@@ -21,10 +21,9 @@ Para o funcionamento adequado é necessário importar as bibliotecas:
 // Importando as bibliotecas necessárias
 # include <ESP8266WiFi.h>
 # include <PubSubClient.h>
-Definição de configurações do Broker, Tópico MQTT e pinos utilizados:
 
 // Define configs do MQTT
-# define ID_MQTT "smart_irrigate_mqtt"
+# define ID_MQTT "hortoTech_mqtt"
 # define TOPICO_PUBLISH_UMIDADE "topico_sensor_umidade"
 
 // Endereço e a porta do broker
@@ -34,7 +33,6 @@ int PORTA = 1883;
 // Definindo os pinos dos dispositivos
 # define rele 2
 # define sensor_umidade 17
-Nas variáveis abaixo você deve colocar o Nome e Senha do seu WiFi:
 
 // Informações da rede WiFi
 char * SSID = "";
@@ -42,8 +40,6 @@ char * PASSWORD = "";
 
 WiFiClient espClient;
 PubSubClient MQTT(espClient);
-
-Métodos que conectam ao MQTT e WiFi:
 
 //Criando as váriaveis globais
 int umidade = 1024;
@@ -88,7 +84,6 @@ void ConsultaConexoes(void) {
   ReconectWIFI(); 
   ReconectMQTT(); 
 }
-Setup do projeto:
 
 void setup() {
 
@@ -99,8 +94,6 @@ void setup() {
 
   StartMQTT();
 }
-
-Fluxo principal do projeto:
 
 void loop() {
   ConsultaConexoes();
@@ -115,18 +108,15 @@ void loop() {
   MQTT.loop();
   delay(10000);
   
-  // Caso a umidade seja baixa
+  // Caso a umidade seja ALTA
   if (umidade>=0 && umidade<400 ) {
-    Serial.println("UMIDADE BAIXA");
-    digitalWrite(rele, HIGH);
-    delay (2000);
-    digitalWrite(rele, LOW);
+    Serial.println("UMIDADE BOA");
   }
 
   else if (umidade>=400 && umidade<1025 ) {
-    Serial.println("UMIDADE BOA");
+    Serial.println("UMIDADE BAIXA");
     digitalWrite(rele, HIGH);
-    delay (2000);
+    delay (4000);
     digitalWrite(rele, LOW);
   }
   
