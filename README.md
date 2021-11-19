@@ -19,20 +19,20 @@ O projeto "Hortotech - Sistema Automatizado de controle de Irrigação", que tem
 Para o funcionamento adequado é necessário importar as bibliotecas:
 
 // Importando as bibliotecas necessárias
-# include <ESP8266WiFi.h>
-# include <PubSubClient.h>
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
 
 // Define configs do MQTT
-# define ID_MQTT "hortoTech_mqtt"
-# define TOPICO_PUBLISH_UMIDADE "topico_sensor_umidade"
+#define ID_MQTT "hortoTech_mqtt"
+#define TOPICO_PUBLISH_UMIDADE "topico_sensor_umidade"
 
 // Endereço e a porta do broker
 const char * BROKER = "test.mosquitto.org";
 int PORTA = 1883;
 
 // Definindo os pinos dos dispositivos
-# define rele 2
-# define sensor_umidade 17
+#define rele 2
+#define sensor_umidade 17
 
 // Informações da rede WiFi
 char * SSID = "";
