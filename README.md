@@ -133,7 +133,7 @@ void loop() {
   delay(10000);
 }
 
-Comunicação MQTT
+# Comunicação MQTT
 Na parte de comunicação com o MQTT, utilizamos o broker test.mosquitto.org apontando para a porta 1883. Optamos por um broker público por conta de ser simples a execução dos testes. Na implementação do sistema criamos o seguinte tópico:
 
 topico_sensor_umidade: neste tópico, fazemos a inscrição no ESP8266 que busca e retorna o valor atual da umidade do solo, sendo mostrado na dashboard do broker.
